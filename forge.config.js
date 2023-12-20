@@ -1,5 +1,9 @@
+/**
+ * @type {import('@electron-forge/shared-types').ResolvedForgeConfig}
+ */
 module.exports = {
   packagerConfig: {
+    appBundleId: 'id.synth.cuttlefish',
     asar: true,
   },
   rebuildConfig: {},
