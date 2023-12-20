@@ -5,7 +5,7 @@
 
 var app = require('electron')
 var ipcRenderer = app.ipcRenderer;
-const remote = app.remote;
+const remote = require('@electron/remote');
 var savedOpacity = .25;
 var playlist = remote.getGlobal('playlist');
 var fileMode = true;

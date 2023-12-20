@@ -1,4 +1,5 @@
 const electron = require('electron')
+require('@electron/remote/main').initialize()
 //console.log("ELECTRON VERSION = ", process.version);
 //const { inAppPurchase } = require('electron').remote
 
@@ -142,7 +143,8 @@ const addClickableRegion = options => {
     webPreferences: {
       // The `plugins` have to be enabled.
       plugins: true,
-      nodeIntegration: true
+      nodeIntegration: true,
+      contextIsolation: false
     },
     icon: path.join(__dirname, 'assets/icons/png/icon_32x32@2x.png')
   });
@@ -181,7 +183,8 @@ const addClickableRegion = options => {
         height: 300,
         width: 256,
         webPreferences: {
-          nodeIntegration: true
+          nodeIntegration: true,
+          contextIsolation: false
         },
         parent
       },
@@ -311,7 +314,8 @@ function start() {
     webPreferences: {
       // The `plugins` have to be enabled.
       plugins: true,
-      nodeIntegration: true
+      nodeIntegration: true,
+      contextIsolation: false
     },
   });
   modeWin.loadURL(MODE_HTML);
@@ -324,6 +328,7 @@ function start() {
 
   });
 
+  require("@electron/remote/main").enable(modeWin.webContents);
 }
 
 
@@ -418,7 +423,8 @@ function promptDonate() {
     webPreferences: {
       // The `plugins` have to be enabled.
       plugins: true,
-      nodeIntegration: true
+      nodeIntegration: true,
+      contextIsolation: false
     },
   });
   promptWin.loadURL(PROMPT_HTML);
@@ -551,6 +557,7 @@ function createWindow(w, h, p) {
       //sandbox: true,
       //nodeIntegration: false,
       nodeIntegration: true,
+      contextIsolation: false,
       webviewTag: true
     },
     fullscreen: false,
@@ -775,6 +782,8 @@ function createWindow(w, h, p) {
     // when you should delete the corresponding element.
     parent = null
   })
+
+  require("@electron/remote/main").enable(parent.webContents);
 }
 
 // This method will be called when Electron has finished
