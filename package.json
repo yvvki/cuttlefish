@@ -1,10 +1,20 @@
 {
-  "name": "ChameleonPlayer",
-  "rebuild": "npm rebuild --runtime=electron --target=7.9.0 --disturl=https://atom.io/download/atom-shell --abi=51",
+  "name": "@synth.id/cuttlefish",
   "version": "2.0.0",
   "description": "Play video transparently full screen while working in the background",
   "main": "main.js",
-  "homepage": "https://www.cinqmarsmedia.com/",
+  "homepage": "https://github.com/yvvki/cuttlefish#readme",
+  "bugs": {
+    "url": "https://github.com/yvvki/cuttlefish/issues"
+  },
+  "license": "GPL-3.0",
+  "author": {
+    "name": "Christopher Cinq-Mars Jarvis",
+    "email": "info@cinqmarsmedia.com"
+  },
+  "contributors": [
+    "Yuuki Rika <yvvki@duck.com>"
+  ],
   "scripts": {
     "start": "electron . --enable-logging --remote-debugging-port='8315'",
     "pack": "build --dir",
@@ -13,11 +23,12 @@
     "v": "electron -v",
     "electron-rebuild": "electron-rebuild -v 8.0.0"
   },
+  "repository": "github:yvvki/cuttlefish",
   "build": {
     "electronVersion": "8.0.0",
-    "productName": "Chameleon Player",
+    "productName": "Cuttlefish Player",
     "electronDist": "./node_modules/electron/dist/",
-    "appId": "com.cinqmarsmedia.chameleon",
+    "appId": "id.synth.cuttlefish",
     "dmg": {
       "contents": [
         {
@@ -46,7 +57,7 @@
         "AppImage",
         "deb"
       ],
-      "maintainer": "Cinq-Mars Media",
+      "maintainer": "Yuuki Rika",
       "icon": "./build/icons"
     },
     "win": {
@@ -63,14 +74,10 @@
     },
     "afterSign": "./widevine-build.js"
   },
+  "rebuild": "npm rebuild --runtime=electron --target=7.9.0 --disturl=https://atom.io/download/atom-shell --abi=51",
   "dependencies": {
     "menubar": "^8.0.0"
   },
-  "author": {
-    "name": "Christopher Cinq-Mars Jarvis",
-    "email": "info@cinqmarsmedia.com"
-  },
-  "license": "",
   "devDependencies": {
     "electron": "^8.0.0",
     "electron-builder": "^22.3.2",
