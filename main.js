@@ -186,11 +186,11 @@ const addClickableRegion = options => {
       },
       tooltip: "Chameleon Player Options",
       preloadWindow: true,
-      preloadWindow: true      
+      preloadWindow: true
     });
     global.menubar = menubar;
     globalShortcut.register('Shift+CommandOrControl+t', () => {
-      if(global.menubar&&global.menubar.window&&global.menubar.window.webContents){
+      if (global.menubar && global.menubar.window && global.menubar.window.webContents) {
         global.menubar.window.webContents.send("toggleView");
       }
     });
@@ -199,11 +199,11 @@ const addClickableRegion = options => {
   initMenubar();
 
 
-global.menubarShown = true;
-menubar
-  .on('after-show', () => { global.menubarShown = true })
-  .on('after-hide', () => { global.menubarShown = false })
-  .on('focus-lost', () => { global.menubarShown = false; global.menubar.hideWindow() });
+  global.menubarShown = true;
+  menubar
+    .on('after-show', () => { global.menubarShown = true })
+    .on('after-hide', () => { global.menubarShown = false })
+    .on('focus-lost', () => { global.menubarShown = false; global.menubar.hideWindow() });
 
 
 };
@@ -227,39 +227,39 @@ function start() {
     let result = arg;
 
 
-if (result.match(/[a-z]|[A-Z]/i)){
+    if (result.match(/[a-z]|[A-Z]/i)) {
 
 
 
-if (!result.includes('http')){
-if (result.includes('www')){
-result='http://'+result;
-}else{
+      if (!result.includes('http')) {
+        if (result.includes('www')) {
+          result = 'http://' + result;
+        } else {
 
-if (!result.includes('.')){
-result="http://www."+result+".com"
-}else{
-result="http://www."+result
-  }
-
-
-
-}
-}
+          if (!result.includes('.')) {
+            result = "http://www." + result + ".com"
+          } else {
+            result = "http://www." + result
+          }
 
 
-}
-//console.log(result);
-   global.playlist = result
+
+        }
+      }
+
+
+    }
+    //console.log(result);
+    global.playlist = result
     getdimensions()
 
-      modeWin.close()
+    modeWin.close()
 
-    });
+  });
 
-ipcMain.on("showMenu", function (event, arg) {
- menubar.showWindow()
-})
+  ipcMain.on("showMenu", function (event, arg) {
+    menubar.showWindow()
+  })
 
 
   ipcMain.on("startwfile", function (event, arg) {
@@ -275,11 +275,11 @@ ipcMain.on("showMenu", function (event, arg) {
           name: 'Movies',
           extensions: ['mkv', 'avi', 'mp4']
         }]
-      }).then(filename=> {
+      }).then(filename => {
         if (typeof filename == 'undefined') {
           //app.quit()
         } else {
-          
+
           global.playlist = filename.filePaths
           /**/
           getdimensions();
@@ -289,7 +289,7 @@ ipcMain.on("showMenu", function (event, arg) {
         }
         dia = false;
       })
-      .catch(console.log);
+        .catch(console.log);
     }
   })
 
@@ -386,25 +386,25 @@ let promptWin;
 
 function promptDonate() {
 
-  
-ipcMain.on("start", function (event, arg) {
 
-start()
-promptWin.close();
-//
-})
+  ipcMain.on("start", function (event, arg) {
+
+    start()
+    promptWin.close();
+    //
+  })
 
 
 
-ipcMain.on("startNoPrompt", function (event, arg) {
-  storage.set('auth', {"data":"U2FsdGVV3JFudJsuhkjevNoHTzYUz9VwaAMWMvUPaIUsqcDmAKSNWR2eR643rYXSryqb"}).then(function () {
-   
-          start();
- promptWin.close();
-})
+  ipcMain.on("startNoPrompt", function (event, arg) {
+    storage.set('auth', { "data": "U2FsdGVV3JFudJsuhkjevNoHTzYUz9VwaAMWMvUPaIUsqcDmAKSNWR2eR643rYXSryqb" }).then(function () {
 
-})
- 
+      start();
+      promptWin.close();
+    })
+
+  })
+
   let promptWin = new BrowserWindow({
     width: 600,
     height: 520,
@@ -435,44 +435,44 @@ function ready() {
         })
   */
 
- globalShortcut.register('CmdOrCtrl+R', () => {
-     });
+  globalShortcut.register('CmdOrCtrl+R', () => {
+  });
   globalShortcut.register('Shift+CmdOrCtrl+R', () => {
-     });
+  });
 
- globalShortcut.register('Shift+CmdOrCtrl+X', () => {
- 	app.quit()
-     });
-    
- globalShortcut.register('CmdOrCtrl+-', () => {
-    });
-    globalShortcut.register('CmdOrCtrl+=', () => {
-    });
-    
+  globalShortcut.register('Shift+CmdOrCtrl+X', () => {
+    app.quit()
+  });
+
+  globalShortcut.register('CmdOrCtrl+-', () => {
+  });
+  globalShortcut.register('CmdOrCtrl+=', () => {
+  });
+
   if (prompt) {
     storage.get('auth')
       .then(data => {
         if (data.data) {
-        //  prompt()
+          //  prompt()
           //console.log('BOOOM',data.data);
           start();
-        }else{
+        } else {
           //start();
           promptDonate()
         }
 
         //storage.set('auth', temp);
 
-       
+
       })
       .catch(err => {
 
-       storage.get('data').then(data => {
-       start();
-       }).catch(err => {
-         promptDonate()
-       })
-        
+        storage.get('data').then(data => {
+          start();
+        }).catch(err => {
+          promptDonate()
+        })
+
         //promptDonate();
         //console.log('err', err)
 
@@ -491,8 +491,8 @@ function postdialog(file) {
 
 
 function getdimensions() {
-  
- if (process.platform=="darwin") {
+
+  if (process.platform == "darwin") {
     app.dock.hide();
   }
 
@@ -576,12 +576,12 @@ function createWindow(w, h, p) {
   // allows the window to show over a fullscreen window
   parent.setVisibleOnAllWorkspaces(true);
 
-ipcMain.on("autotoggle", function () {
-  console.log('autotoggle');
-  if(global.menubar&&global.menubar.window&&global.menubar.window.webContents){
-    global.menubar.window.webContents.send("toggleView");
-  }
-});
+  ipcMain.on("autotoggle", function () {
+    console.log('autotoggle');
+    if (global.menubar && global.menubar.window && global.menubar.window.webContents) {
+      global.menubar.window.webContents.send("toggleView");
+    }
+  });
 
   //setTimeout(()=>{}, 6000);
   ipcMain.on("toggle", function () { // here???
@@ -596,7 +596,7 @@ ipcMain.on("autotoggle", function () {
 
     }
     //parent.webContents.send("toggleView")
-    parent.webContents.send("toggleViz",toggleCounter % 2)
+    parent.webContents.send("toggleViz", toggleCounter % 2)
   })
 
   ipcMain.on("goBack", function (event, arg) {
@@ -604,15 +604,15 @@ ipcMain.on("autotoggle", function () {
 
 
 
-      parent.webContents.send("relaunch")
+    parent.webContents.send("relaunch")
 
-   
+
 
 
   });
 
   ipcMain.on("toggleMenu", function (event, arg) {
-   //TOGGLE MENU
+    //TOGGLE MENU
   });
 
   ipcMain.on("opac", function (event, arg) {
@@ -621,7 +621,7 @@ ipcMain.on("autotoggle", function () {
 
   ipcMain.on("opacityplus", function (event, arg) {
     parent.webContents.send("opacityplus");
-    
+
   });
 
   ipcMain.on("opacityminus", function (event, arg) {
@@ -674,8 +674,8 @@ ipcMain.on("autotoggle", function () {
     // KEYBOARD SHORTCUTS -------------------------------------
     globalShortcut.register('Shift+CommandOrControl+=', () => {
       parent.webContents.send("opacityplus");
-      if(global.menubar&&global.menubar.window&&global.menubar.window.webContents){
-        global.menubar.window.webContents.send("shortcut",0);
+      if (global.menubar && global.menubar.window && global.menubar.window.webContents) {
+        global.menubar.window.webContents.send("shortcut", 0);
       }
     })
 
@@ -683,31 +683,31 @@ ipcMain.on("autotoggle", function () {
 
     globalShortcut.register('Shift+CommandOrControl+-', () => {
       parent.webContents.send("opacityminus");
-      if(global.menubar&&global.menubar.window&&global.menubar.window.webContents){
-       global.menubar.window.webContents.send("shortcut",1);
+      if (global.menubar && global.menubar.window && global.menubar.window.webContents) {
+        global.menubar.window.webContents.send("shortcut", 1);
       }
-  
+
     })
 
- globalShortcut.register('Shift+CommandOrControl+j', () => {
+    globalShortcut.register('Shift+CommandOrControl+j', () => {
       global.menubarShown ? menubar.hideWindow() : menubar.showWindow()
     })
 
-/*
-    globalShortcut.register('Shift+CommandOrControl+0', () => {
-      parent.webContents.send("opacityhalf");
-    })
+    /*
+        globalShortcut.register('Shift+CommandOrControl+0', () => {
+          parent.webContents.send("opacityhalf");
+        })
+        */
+    /*
+        globalShortcut.register('Shift+CommandOrControl+t', () => {
+          parent.webContents.send("toggleView");
+        })
     */
-/*
-    globalShortcut.register('Shift+CommandOrControl+t', () => {
-      parent.webContents.send("toggleView");
-    })
-*/
     globalShortcut.register('Shift+CommandOrControl+h', () => {
       parent.webContents.send("opacitynone");
       //global.menubar.window.webContents.send("shortcut",3);
     })
-     globalShortcut.register('Shift+CommandOrControl+f', () => {
+    globalShortcut.register('Shift+CommandOrControl+f', () => {
       parent.webContents.send("opacityfull");
       //global.menubar.window.webContents.send("shortcut",3);
     })
@@ -726,8 +726,8 @@ ipcMain.on("autotoggle", function () {
 
     globalShortcut.register('Shift+CommandOrControl+p', () => {
       parent.webContents.send("playpause");
-      if(global.menubar&&global.menubar.window&&global.menubar.window.webContents){
-        global.menubar.window.webContents.send("shortcut",2);
+      if (global.menubar && global.menubar.window && global.menubar.window.webContents) {
+        global.menubar.window.webContents.send("shortcut", 2);
       }
     })
 
@@ -744,11 +744,11 @@ ipcMain.on("autotoggle", function () {
 
     parent.show();
     parent.blur();
-/*
-    if (!/^win/.test(process.platform)) {
-      robot.mouseClick();
-    }
-*/
+    /*
+        if (!/^win/.test(process.platform)) {
+          robot.mouseClick();
+        }
+    */
   });
 
   parent.loadURL(INDEX_HTML);
