@@ -1,6 +1,5 @@
 {
   "name": "ChameleonPlayer",
-  "rebuild": "npm rebuild --runtime=electron --target=7.9.0 --disturl=https://atom.io/download/atom-shell --abi=51",
   "version": "2.0.0",
   "description": "Play video transparently full screen while working in the background",
   "main": "main.js",
