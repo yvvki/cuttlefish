@@ -509,24 +509,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@synth.id/cuttlefish@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "@synth.id/cuttlefish@workspace:."
-  dependencies:
-    "@electron-forge/cli": "npm:^7.2.0"
-    "@electron-forge/maker-deb": "npm:^7.2.0"
-    "@electron-forge/maker-rpm": "npm:^7.2.0"
-    "@electron-forge/maker-squirrel": "npm:^7.2.0"
-    "@electron-forge/maker-zip": "npm:^7.2.0"
-    "@electron-forge/plugin-auto-unpack-natives": "npm:^7.2.0"
-    "@electron/remote": "npm:^2.0.0"
-    electron: "npm:^27.0.0"
-    electron-squirrel-startup: "npm:^1.0.0"
-    electron-store: "npm:^8.0.0"
-    menubar: "npm:^9.0.0"
-  languageName: unknown
-  linkType: soft
-
 "@szmarczak/http-timer@npm:^4.0.5":
   version: 4.0.6
   resolution: "@szmarczak/http-timer@npm:4.0.6"
@@ -1156,6 +1138,24 @@ __metadata:
   checksum: a4de23d6adda172aac4f26502aed9abb45cc12307e107c5d3da32dc2d0a872f1adb9bcafcc72583c705ae65279b1d257364c1ad015ecacd33d6336600b5ecaa3
   languageName: node
   linkType: hard
+
+"cuttlefish@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "cuttlefish@workspace:."
+  dependencies:
+    "@electron-forge/cli": "npm:^7.2.0"
+    "@electron-forge/maker-deb": "npm:^7.2.0"
+    "@electron-forge/maker-rpm": "npm:^7.2.0"
+    "@electron-forge/maker-squirrel": "npm:^7.2.0"
+    "@electron-forge/maker-zip": "npm:^7.2.0"
+    "@electron-forge/plugin-auto-unpack-natives": "npm:^7.2.0"
+    "@electron/remote": "npm:^2.0.0"
+    electron: "npm:^27.0.0"
+    electron-squirrel-startup: "npm:^1.0.0"
+    electron-store: "npm:^8.0.0"
+    menubar: "npm:^9.0.0"
+  languageName: unknown
+  linkType: soft
 
 "debounce-fn@npm:^4.0.0":
   version: 4.0.0

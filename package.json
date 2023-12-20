@@ -1,5 +1,5 @@
 {
-  "name": "@synth.id/cuttlefish",
+  "name": "cuttlefish",
   "version": "2.0.0",
   "description": "Play video transparently full screen while working in the background",
   "main": "main.js",
