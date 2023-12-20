@@ -10,7 +10,8 @@ var globalShortcut = electron.globalShortcut
 const {
   dialog
 } = require('electron')
-const storage = require('electron-storage');
+const Store = require('electron-store');
+const storage = new Store();
 var defaults = {
   email: null,
   sn: null,
