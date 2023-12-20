@@ -1,6 +1,6 @@
 
 var app = require('electron');
-const remote = app.remote;
+const remote = require('@electron/remote');
 var playlist = remote.getGlobal('playlist');
 var steam = remote.getGlobal('steam');
 var trials = remote.getGlobal('trials');

@@ -1,8 +1,9 @@
 {
-  "name": "@synth.id/cuttlefish",
+  "name": "cuttlefish",
   "version": "2.0.0",
   "description": "Play video transparently full screen while working in the background",
-  "main": "main.js",
+  "main": "main.cjs",
+  "type": "module",
   "homepage": "https://github.com/yvvki/cuttlefish#readme",
   "bugs": {
     "url": "https://github.com/yvvki/cuttlefish/issues"
@@ -16,73 +17,25 @@
     "Yuuki Rika <yvvki@duck.com>"
   ],
   "scripts": {
-    "start": "electron . --enable-logging --remote-debugging-port='8315'",
-    "pack": "build --dir",
-    "dist": "build",
-    "postinstall": "electron-builder install-app-deps",
-    "v": "electron -v",
-    "electron-rebuild": "electron-rebuild -v 8.0.0"
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
   },
   "repository": "github:yvvki/cuttlefish",
-  "build": {
-    "electronVersion": "8.0.0",
-    "productName": "Cuttlefish Player",
-    "electronDist": "./node_modules/electron/dist/",
-    "appId": "id.synth.cuttlefish",
-    "dmg": {
-      "contents": [
-        {
-          "x": 110,
-          "y": 150
-        },
-        {
-          "x": 240,
-          "y": 150,
-          "type": "link",
-          "path": "/Applications"
-        }
-      ]
-    },
-    "mac": {
-      "icon": "./build/icon.icns",
-      "hardenedRuntime": true,
-      "entitlements": "./build/entitlements.mac.inherit.plist",
-      "target": [
-        "dmg",
-        "zip"
-      ]
-    },
-    "linux": {
-      "target": [
-        "AppImage",
-        "deb"
-      ],
-      "maintainer": "Yuuki Rika",
-      "icon": "./build/icons"
-    },
-    "win": {
-      "target": [
-        "portable",
-        "nsis"
-      ],
-      "icon": "build/icon.ico"
-    },
-    "nsis": {
-      "oneClick": false,
-      "allowToChangeInstallationDirectory": true,
-      "createDesktopShortcut": "always"
-    },
-    "afterSign": "./widevine-build.js"
-  },
-  "rebuild": "npm rebuild --runtime=electron --target=7.9.0 --disturl=https://atom.io/download/atom-shell --abi=51",
   "dependencies": {
-    "menubar": "^8.0.0"
+    "@electron/remote": "^2.0.0",
+    "electron-squirrel-startup": "^1.0.0",
+    "menubar": "^9.0.0"
   },
   "devDependencies": {
-    "electron": "^8.0.0",
-    "electron-builder": "^22.3.2",
-    "electron-notarize": "^0.2.1",
-    "electron-rebuild": "^1.10.0",
+    "@electron-forge/cli": "^7.2.0",
+    "@electron-forge/maker-deb": "^7.2.0",
+    "@electron-forge/maker-rpm": "^7.2.0",
+    "@electron-forge/maker-squirrel": "^7.2.0",
+    "@electron-forge/maker-zip": "^7.2.0",
+    "@electron-forge/plugin-auto-unpack-natives": "^7.2.0",
+    "electron": "^27.0.0",
     "electron-store": "^8.0.0"
-  }
+  },
+  "packageManager": "yarn@4.0.2"
 }
