@@ -2,7 +2,6 @@
   "name": "cuttlefish",
   "version": "2.0.0",
   "description": "Play video transparently full screen while working in the background",
-  "main": "main.js",
   "homepage": "https://github.com/yvvki/cuttlefish#readme",
   "bugs": {
     "url": "https://github.com/yvvki/cuttlefish/issues"
@@ -15,6 +14,8 @@
   "contributors": [
     "Yuuki Rika <yvvki@duck.com>"
   ],
+  "main": "main.js",
+  "packageManager": "yarn@4.0.2",
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
@@ -35,6 +36,5 @@
     "@electron-forge/plugin-auto-unpack-natives": "^7.2.0",
     "electron": "^27.0.0",
     "electron-store": "^8.0.0"
-  },
-  "packageManager": "yarn@4.0.2"
+  }
 }
