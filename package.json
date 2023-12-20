@@ -1,20 +1,27 @@
 {
-  "name": "ChameleonPlayer",
+  "name": "@synth.id/cuttlefish",
   "version": "2.0.0",
   "description": "Play video transparently full screen while working in the background",
   "main": "main.js",
-  "homepage": "https://www.cinqmarsmedia.com/",
-  "scripts": {
-    "start": "electron ."
+  "homepage": "https://github.com/yvvki/cuttlefish#readme",
+  "bugs": {
+    "url": "https://github.com/yvvki/cuttlefish/issues"
   },
-  "dependencies": {
-    "menubar": "^9.0.0"
-  },
+  "license": "GPL-3.0",
   "author": {
     "name": "Christopher Cinq-Mars Jarvis",
     "email": "info@cinqmarsmedia.com"
   },
-  "license": "",
+  "contributors": [
+    "Yuuki Rika <yvvki@duck.com>"
+  ],
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "github:yvvki/cuttlefish",
+  "dependencies": {
+    "menubar": "^9.0.0"
+  },
   "devDependencies": {
     "electron": "^27.0.0",
     "electron-store": "^8.0.0"
