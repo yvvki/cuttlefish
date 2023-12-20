@@ -66,7 +66,6 @@
   "dependencies": {
     "electron-storage": "^1.0.7",
     "menubar": "^8.0.0",
-    "node-abi": "^2.15.0",
     "@jitsi/robotjs": "^0.6.0"
   },
   "author": {
