@@ -64,8 +64,7 @@
     "afterSign": "./widevine-build.js"
   },
   "dependencies": {
-    "menubar": "^8.0.0",
-    "@jitsi/robotjs": "^0.6.0"
+    "menubar": "^8.0.0"
   },
   "author": {
     "name": "Christopher Cinq-Mars Jarvis",
