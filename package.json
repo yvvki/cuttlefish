@@ -2,7 +2,8 @@
   "name": "cuttlefish",
   "version": "2.0.0",
   "description": "Play video transparently full screen while working in the background",
-  "main": "main.js",
+  "main": "main.cjs",
+  "type": "module",
   "homepage": "https://github.com/yvvki/cuttlefish#readme",
   "bugs": {
     "url": "https://github.com/yvvki/cuttlefish/issues"
