@@ -6,62 +6,7 @@
   "main": "main.js",
   "homepage": "https://www.cinqmarsmedia.com/",
   "scripts": {
-    "start": "electron . --enable-logging --remote-debugging-port='8315'",
-    "pack": "build --dir",
-    "dist": "build",
-    "postinstall": "electron-builder install-app-deps",
-    "v": "electron -v",
-    "electron-rebuild": "electron-rebuild -v 8.0.0"
-  },
-  "build": {
-    "electronVersion": "8.0.0",
-    "productName": "Chameleon Player",
-    "electronDist": "./node_modules/electron/dist/",
-    "appId": "com.cinqmarsmedia.chameleon",
-    "dmg": {
-      "contents": [
-        {
-          "x": 110,
-          "y": 150
-        },
-        {
-          "x": 240,
-          "y": 150,
-          "type": "link",
-          "path": "/Applications"
-        }
-      ]
-    },
-    "mac": {
-      "icon": "./build/icon.icns",
-      "hardenedRuntime": true,
-      "entitlements": "./build/entitlements.mac.inherit.plist",
-      "target": [
-        "dmg",
-        "zip"
-      ]
-    },
-    "linux": {
-      "target": [
-        "AppImage",
-        "deb"
-      ],
-      "maintainer": "Cinq-Mars Media",
-      "icon": "./build/icons"
-    },
-    "win": {
-      "target": [
-        "portable",
-        "nsis"
-      ],
-      "icon": "build/icon.ico"
-    },
-    "nsis": {
-      "oneClick": false,
-      "allowToChangeInstallationDirectory": true,
-      "createDesktopShortcut": "always"
-    },
-    "afterSign": "./widevine-build.js"
+    "start": "electron ."
   },
   "dependencies": {
     "menubar": "^8.0.0"
