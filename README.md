@@ -13,6 +13,11 @@
 
 This is a fork of Chameleon called Cuttlefish!
 
+> ### 🚧⚠️ **WORK IN PROGRESS!**
+>
+> Expect things to be broken. See our
+> [issues](https://gituhub.com/yvvki/cuttlefish/issues).
+
 Chameleon is an electron desktop app made by our 501(c)3 non-profit [Cinq-Mars Media](https://www.cinqmarsmedia.com). It was originally devised as multitasking tool for online education but has since expanded to include local video files and entertainment streaming services. Please consider [donating](https://www.paypal.com/us/fundraiser/charity/1944132) to our non-profit to support open source projects like this one!
 
 ## Getting Started
