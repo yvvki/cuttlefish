@@ -9,6 +9,7 @@ import {
 } from 'electron';
 import {dirname, join} from 'node:path';
 import {fileURLToPath} from 'node:url';
+import process from 'node:process';
 import Store from 'electron-store';
 import {menubar as Menubar} from 'menubar';
 import remote from '@electron/remote/main/index.js';
