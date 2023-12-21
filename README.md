@@ -38,4 +38,6 @@ yarn start
 
 ## License
 
-This project is licensed 
+> Copyright (c) Cinq-Mars Media & Yuuki Rika
+
+Licensed under the GNU General Public License. See [LICENCE.md](LICENSE.md).
