@@ -1,17 +1,17 @@
-const electron = require('electron');
+import { shell as _shell, ipcMain as _ipcMain, globalShortcut as _globalShortcut, app as _app, BrowserWindow as _BrowserWindow, screen } from 'electron';
 require('@electron/remote/main').initialize();
 // Console.log("ELECTRON VERSION = ", process.version);
 // const { inAppPurchase } = require('electron').remote
 
-const shell = electron.shell;
+const shell = _shell;
 // Var robot = require("robotjs");
 // var CryptoJS = require("crypto-js");
-const ipcMain = electron.ipcMain;
-const globalShortcut = electron.globalShortcut;
-const {dialog} = require('electron');
-const path = require('node:path');
-const url = require('node:url');
-const Store = require('electron-store');
+const ipcMain = _ipcMain;
+const globalShortcut = _globalShortcut;
+import { dialog } from 'electron';
+import { join } from 'node:path';
+import url from 'node:url';
+import Store from 'electron-store';
 
 const storage = new Store();
 const defaults = {
@@ -36,10 +36,10 @@ global.steam = DRM && steam;
 // const remote = require('electron').remote
 
 // Module to control application life.
-const app = electron.app;
+const app = _app;
 app.commandLine.appendSwitch(
 	'widevine-cdm-path',
-	path.join(__dirname, 'widevinecdmadapter.plugin'),
+	join(__dirname, 'widevinecdmadapter.plugin'),
 );
 // The version of plugin can be got from `chrome://plugins` page in Chrome.
 app.commandLine.appendSwitch('widevine-cdm-version', '1.4.8.866');
@@ -64,28 +64,28 @@ switch (process.platform) {
 
 app.commandLine.appendSwitch(
 	'ppapi-flash-path',
-	path.join(__dirname, pluginName),
+	join(__dirname, pluginName),
 );
 
 // Optional: Specify flash version, for example, v17.0.0.169
 app.commandLine.appendSwitch('ppapi-flash-version', '29.0.0.117');
 
 // Module to create native browser window.
-const BrowserWindow = electron.BrowserWindow;
+const BrowserWindow = _BrowserWindow;
 
 // Const ipcMain=electron.ipcMain // ?
 /*
 const Tray=electron.Tray
 const nativeImage=electron.nativeImage
 */
-const Menubar = require('menubar').menubar;
+import { menubar as Menubar } from 'menubar';
 
-const INDEX_HTML = path.join('file://', __dirname, 'index.html');
-const PROMPT_HTML = path.join('file://', __dirname, 'prompt.html');
-const MODE_HTML = path.join('file://', __dirname, 'mode.html');
+const INDEX_HTML = join('file://', __dirname, 'index.html');
+const PROMPT_HTML = join('file://', __dirname, 'prompt.html');
+const MODE_HTML = join('file://', __dirname, 'mode.html');
 
-const TRANSPARENT_HTML = path.join('file://', __dirname, 'transparent.html');
-const MENU = path.join('file://', __dirname, 'menu.html');
+const TRANSPARENT_HTML = join('file://', __dirname, 'transparent.html');
+const MENU = join('file://', __dirname, 'menu.html');
 const CHILD_PADDING = 0;
 
 ipcMain.on('quitprompt', function (event, arg) {
@@ -149,7 +149,7 @@ const addClickableRegion = (options) => {
 			nodeIntegration: true,
 			contextIsolation: false,
 		},
-		icon: path.join(__dirname, 'assets/icons/png/icon_32x32@2x.png'),
+		icon: join(__dirname, 'assets/icons/png/icon_32x32@2x.png'),
 	});
 	/* ???????
     // this is a dirty workaround to set the cursor style when hovering over the button
@@ -492,7 +492,7 @@ function getdimensions() {
     tray = new Tray(icon)
   
   */
-	const screenElectron = electron.screen;
+	const screenElectron = screen;
 	const mainScreen = screenElectron.getPrimaryDisplay();
 
 	// Hides the dock icon for our app which allows our windows to join other
