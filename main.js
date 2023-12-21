@@ -507,7 +507,7 @@ console.log('test button has fired') // what I want to happen
 }
 */
 
-function createWindow(w, h, p) {
+function createWindow(width, height, playlist) {
 	let parent = new BrowserWindow({
 		webPreferences: {
 			plugins: true,
@@ -518,8 +518,8 @@ function createWindow(w, h, p) {
 			webviewTag: true,
 		},
 		fullscreen: false,
-		width: w,
-		height: h,
+		width,
+		height,
 		transparent: true,
 		frame: false,
 		skipTaskbar: true,
@@ -529,9 +529,9 @@ function createWindow(w, h, p) {
 		minimizable: false,
 	});
 
-	parent.setSize(w, h);
+	parent.setSize(width, height);
 
-	if (typeof p !== 'string') {
+	if (typeof playlist !== 'string') {
 		parent.setIgnoreMouseEvents(true);
 	}
 
@@ -621,8 +621,8 @@ function createWindow(w, h, p) {
 			parent,
 			x: CHILD_PADDING,
 			y: CHILD_PADDING,
-			width: w,
-			height: h,
+			width,
+			height,
 		});
 
 		// KEYBOARD SHORTCUTS -------------------------------------
