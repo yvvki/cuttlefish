@@ -1,133 +1,127 @@
-
-var app = require('electron');
+const app = require('electron');
 const remote = require('@electron/remote');
-var playlist = remote.getGlobal('playlist');
-var steam = remote.getGlobal('steam');
-var trials = remote.getGlobal('trials');
-var ipcRenderer = require('electron').ipcRenderer;
-var isBackground = true;
-var savedSlider = 25;
-function bakc() {
-	//document.getElementById('load').style.display="none"
 
-	ipcRenderer.send("goBack");
+const playlist = remote.getGlobal('playlist');
+const steam = remote.getGlobal('steam');
+const trials = remote.getGlobal('trials');
+const ipcRenderer = require('electron').ipcRenderer;
+
+let isBackground = true;
+let savedSlider = 25;
+function bakc() {
+	// Document.getElementById('load').style.display="none"
+
+	ipcRenderer.send('goBack');
 }
 
 function toggleHIDE() {
-	ipcRenderer.send("autotoggle");
+	ipcRenderer.send('autotoggle');
 }
+
 function toggleIT(bool) {
-	if (typeof playlist !== 'string') { return }
-	if (typeof bool !== 'undefined') {
+	if (typeof playlist !== 'string') {
+		return;
+	}
+
+	if (bool !== undefined) {
 		savedSlider = 95;
 	}
-	var slide = document.getElementById("myRange");
-	var togglebutt = document.getElementById("toggleTxt");
-	var togglebutttwo = document.getElementById("secondToggleTxt");
-	isBackground = !isBackground;
 
+	const slide = document.querySelector('#myRange');
+	const togglebutt = document.querySelector('#toggleTxt');
+	const togglebutttwo = document.querySelector('#secondToggleTxt');
+	isBackground = !isBackground;
 
 	if (slide) {
 		if (isBackground) {
 			savedSlider = slide.value;
 			slide.value = 100;
 		} else {
-			//if (savedSlider>80){savedSlider=25}
+			// If (savedSlider>80){savedSlider=25}
 			slide.value = savedSlider;
-			//ipcRenderer.send("opac",savedSlider/100);
+			// IpcRenderer.send("opac",savedSlider/100);
 		}
-
 	}
-
 
 	if (togglebutt) {
-		if (!isBackground) {
-			togglebutt.innerText = "Send To Foreground"
-			togglebutttwo.innerText = "(Focus)"
+		if (isBackground) {
+			togglebutt.innerText = 'Send To Background';
+			togglebutttwo.innerText = '(UnFocus)';
 		} else {
-			togglebutt.innerText = "Send To Background"
-			togglebutttwo.innerText = "(UnFocus)"
+			togglebutt.innerText = 'Send To Foreground';
+			togglebutttwo.innerText = '(Focus)';
 		}
 	}
 
-
-	//console.log('fires');
-	if (document.getElementById('browserOverlay')) {
-		document.getElementById('browserOverlay').style.display = "none";
+	// Console.log('fires');
+	if (document.querySelector('#browserOverlay')) {
+		document.querySelector('#browserOverlay').style.display = 'none';
 	}
-	ipcRenderer.send("toggle");
+
+	ipcRenderer.send('toggle');
 }
 
-ipcRenderer.on("toggleView", function (event, trials) {
-	toggleIT()
-})
+ipcRenderer.on('toggleView', function (event, trials) {
+	toggleIT();
+});
 
-ipcRenderer.on("shortcut", function (event, arg) {
-	var slide = document.getElementById("myRange");
+ipcRenderer.on('shortcut', function (event, arg) {
+	const slide = document.querySelector('#myRange');
 	//
 	if (arg == 0) {
 		if (slide) {
-			if (parseFloat(slide.value) == 100 && typeof playlist == 'string') {
+			if (
+				Number.parseFloat(slide.value) == 100 &&
+				typeof playlist === 'string'
+			) {
 				return;
 			}
-			//console.log(slide.value);
-			if (parseFloat(slide.value) + 5 >= 100) {
-				if (typeof playlist !== 'string') {
-					slide.value = 100
-				} else {
+
+			// Console.log(slide.value);
+			if (Number.parseFloat(slide.value) + 5 >= 100) {
+				if (typeof playlist === 'string') {
 					toggleIT();
+				} else {
+					slide.value = 100;
 				}
-
-
-
-
-
 			} else {
-				slide.value = parseFloat(slide.value) + 5;
+				slide.value = Number.parseFloat(slide.value) + 5;
 			}
-			//console.log(slide.value);
+			// Console.log(slide.value);
 			//
 		}
 	} else if (arg == 1) {
-
 		if (slide) {
-
-			if (parseFloat(slide.value) == 100 && typeof playlist == 'string') {
+			if (
+				Number.parseFloat(slide.value) == 100 &&
+				typeof playlist === 'string'
+			) {
 				toggleIT(true);
 				return;
 			}
-			if (parseFloat(slide.value) - 5 < 0) {
-				slide.value = 0;
-			} else {
-				slide.value = parseFloat(slide.value) - 5;
-			}
-		}
 
+			slide.value =
+				Number.parseFloat(slide.value) - 5 < 0
+					? 0
+					: Number.parseFloat(slide.value) - 5;
+		}
 	} else if (arg == 2) {
-		var ele = document.getElementById("playpauser")
+		const ele = document.querySelector('#playpauser');
 
-		if (ele.src.includes('ic_play_arrow_black_24px')) {
-			ele.src = ele.src.replace(/ic_.+/i, 'ic_pause_black_24px.svg');
-		} else {
-			ele.src = ele.src.replace(/ic_.+/i, 'ic_play_arrow_black_24px.svg');
-		}
-
-
+		ele.src = ele.src.includes('ic_play_arrow_black_24px')
+			? ele.src.replace(/ic_.+/i, 'ic_pause_black_24px.svg')
+			: ele.src.replace(/ic_.+/i, 'ic_play_arrow_black_24px.svg');
 	}
+});
 
-})
-
-ipcRenderer.on("toggleViz", function (event, arg) {
-
-
-	if (document.getElementById('browserOverlay')) {
-		document.getElementById('browserOverlay').style.display = "none";
+ipcRenderer.on('toggleViz', function (event, arg) {
+	if (document.querySelector('#browserOverlay')) {
+		document.querySelector('#browserOverlay').style.display = 'none';
 	}
-})
-
+});
 
 /*
-ipcRenderer.on("test", function(event,trials){
+IpcRenderer.on("test", function(event,trials){
 if (document.getElementById("numTrials")){
 document.getElementById("numTrials").innerHTML=String(trials);
 if (trials==1){
@@ -135,9 +129,9 @@ if (trials==1){
 }}
 });
 */
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener('DOMContentLoaded', function () {
 	/*
-	console.log('selfie');
+	Console.log('selfie');
 	console.log(playlist);
 	console.log(document.getElementById('scrubbing'));
 	*/
@@ -160,122 +154,101 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 	*/
 
-
-
-	var input = document.getElementById("url");
+	const input = document.querySelector('#url');
 
 	if (input) {
 		// Execute a function when the user releases a key on the keyboard
-		input.addEventListener("keyup", function (event) {
+		input.addEventListener('keyup', function (event) {
 			// Number 13 is the "Enter" key on the keyboard
-			if (event.keyCode === 13) {
+			if (event.key === 'Enter') {
 				// Cancel the default action, if needed
-				ipcRenderer.send("openURL", input.value);
-
+				ipcRenderer.send('openURL', input.value);
 			}
 		});
 	}
-	if (steam) {
 
-		//console.log('fireeeeeeeed');
-		if (document.getElementById('snInput')) {
-			document.getElementById('snInput').style.display = "none";
-			document.getElementById('purch').style.display = "none";
-			document.getElementById('break').style.display = "none";
-			document.getElementById('steamFrame').style.display = "flex";
-
-		}
+	if (
+		steam && // Console.log('fireeeeeeeed');
+		document.querySelector('#snInput')
+	) {
+		document.querySelector('#snInput').style.display = 'none';
+		document.querySelector('#purch').style.display = 'none';
+		document.querySelector('#break').style.display = 'none';
+		document.querySelector('#steamFrame').style.display = 'flex';
 	}
 
-
-
-
-	if (/^win/.test(process.platform)) {
-		if (document.getElementById('imag')) {
-			document.getElementById('imag').src = "assets/img/win.jpg"
-		}
+	if (process.platform.startsWith('win') && document.querySelector('#imag')) {
+		document.querySelector('#imag').src = 'assets/img/win.jpg';
 	}
+
 	/**/
-	if (document.getElementById('plat11')) {
-		if (/^win/.test(process.platform)) {
-			document.getElementById('plat11').innerText = "control (^)"
+	if (document.querySelector('#plat11')) {
+		if (process.platform.startsWith('win')) {
+			document.querySelector('#plat11').innerText = 'control (^)';
 		} else {
-			document.getElementById('plat11').innerText = "command (⌘) "
+			document.querySelector('#plat11').innerText = 'command (⌘) ';
 		}
 	}
 
-	if (document.getElementById('scrubbing')) {
-
-		if (/^win/.test(process.platform)) {
-			document.getElementById('plat1').innerText = "^"
-			document.getElementById('plat2').innerText = "^"
-			document.getElementById('plat3').innerText = "^"
-			document.getElementById('plat4').innerText = "^"
-			document.getElementById('plat5').innerText = "^"
-			document.getElementById('plat6').innerText = "^"
-			document.getElementById('plat7').innerText = "^"
-			document.getElementById('plat8').innerText = "^"
-			document.getElementById('plat9').innerText = "^"
-			document.getElementById('plat10').innerText = "^"
+	if (document.querySelector('#scrubbing')) {
+		if (process.platform.startsWith('win')) {
+			document.querySelector('#plat1').innerText = '^';
+			document.querySelector('#plat2').innerText = '^';
+			document.querySelector('#plat3').innerText = '^';
+			document.querySelector('#plat4').innerText = '^';
+			document.querySelector('#plat5').innerText = '^';
+			document.querySelector('#plat6').innerText = '^';
+			document.querySelector('#plat7').innerText = '^';
+			document.querySelector('#plat8').innerText = '^';
+			document.querySelector('#plat9').innerText = '^';
+			document.querySelector('#plat10').innerText = '^';
 		} else {
-			document.getElementById('plat1').innerText = "⌘"
-			document.getElementById('plat2').innerText = "⌘"
-			document.getElementById('plat3').innerText = "⌘"
-			document.getElementById('plat4').innerText = "⌘"
-			document.getElementById('plat5').innerText = "⌘"
-			document.getElementById('plat6').innerText = "⌘"
-			document.getElementById('plat7').innerText = "⌘"
-			document.getElementById('plat8').innerText = "⌘"
-			document.getElementById('plat9').innerText = "⌘"
-			document.getElementById('plat10').innerText = "⌘"
+			document.querySelector('#plat1').innerText = '⌘';
+			document.querySelector('#plat2').innerText = '⌘';
+			document.querySelector('#plat3').innerText = '⌘';
+			document.querySelector('#plat4').innerText = '⌘';
+			document.querySelector('#plat5').innerText = '⌘';
+			document.querySelector('#plat6').innerText = '⌘';
+			document.querySelector('#plat7').innerText = '⌘';
+			document.querySelector('#plat8').innerText = '⌘';
+			document.querySelector('#plat9').innerText = '⌘';
+			document.querySelector('#plat10').innerText = '⌘';
 		}
 
+		if (typeof playlist === 'string') {
+			document.querySelector('#scrubbing').style.display = 'none';
+			document.querySelector('#ctrls').style.display = 'none';
+			document.querySelector('#togshort').style.display = 'block';
 
-
-
-		if (typeof playlist == 'string') {
-			document.getElementById('scrubbing').style.display = "none";
-			document.getElementById('ctrls').style.display = "none";
-			document.getElementById('togshort').style.display = "block";
-
-			var slide = document.getElementById("myRange");
+			const slide = document.querySelector('#myRange');
 			if (slide) {
 				slide.value = 100;
-
-
 			}
-
-
 		} else {
-			document.getElementById('hide').style.display = "none";
+			document.querySelector('#hide').style.display = 'none';
 
-
-
-			//document.getElementById('show').style.display="none";
-			//document.getElementById('kys').style.display="none";
+			// Document.getElementById('show').style.display="none";
+			// document.getElementById('kys').style.display="none";
 		}
-
 	}
-	if (document.getElementById("numTrials")) {
-		document.getElementById("numTrials").innerHTML = trials;
+
+	if (document.querySelector('#numTrials')) {
+		document.querySelector('#numTrials').innerHTML = trials;
 
 		if (trials == 1) {
-			document.getElementById("ess").innerHTML = "";
+			document.querySelector('#ess').innerHTML = '';
 		} else {
-			document.getElementById("ess").innerHTML = "s";
+			document.querySelector('#ess').innerHTML = 's';
 		}
-
-
 	}
 
-
-	if (document.getElementById("slidecontainer")) {
-		ipcRenderer.send("showMenu");
+	if (document.querySelector('#slidecontainer')) {
+		ipcRenderer.send('showMenu');
 	}
 });
 
 /*
-function openApp(){
+Function openApp(){
 ipcRenderer.send("startwfile",null);
    
 }
@@ -285,54 +258,48 @@ ipcRenderer.send("openbrowser", url);
 }
 */
 
-var enterLicense = function () {
-	var email = document.getElementById("email").value
-	//var sn=document.getElementById("sn2").value+document.getElementById("sn1").value+document.getElementById("sn3").value
-	var sn = document.getElementById("sn1").value + document.getElementById("sn2").value + document.getElementById("sn3").value
+const enterLicense = function () {
+	const email = document.querySelector('#email').value;
+	// Var sn=document.getElementById("sn2").value+document.getElementById("sn1").value+document.getElementById("sn3").value
+	let sn =
+		document.querySelector('#sn1').value +
+		document.querySelector('#sn2').value +
+		document.querySelector('#sn3').value;
 
-	sn = sn.toUpperCase()
+	sn = sn.toUpperCase();
 
-	ipcRenderer.send("enterlicense", [email, sn]);
+	ipcRenderer.send('enterlicense', [email, sn]);
+};
 
-}
+ipcRenderer.on('invalid', function (event, trials) {
+	alert(
+		'Invalid License. Please Re-Check Confirmation Email. Ensure you did not enter your Steam Key, which is separate.',
+	);
+});
+ipcRenderer.on('thx', function (event, trials) {
+	alert('Thanks for Purchasing!');
+});
 
-ipcRenderer.on("invalid", function (event, trials) {
-	alert("Invalid License. Please Re-Check Confirmation Email. Ensure you did not enter your Steam Key, which is separate.");
-})
-ipcRenderer.on("thx", function (event, trials) {
-	alert("Thanks for Purchasing!");
-})
+ipcRenderer.on('triallimit', function (event, trials) {
+	alert('Trial Limit Reached, Please Purchase');
+});
 
-ipcRenderer.on("triallimit", function (event, trials) {
-	alert("Trial Limit Reached, Please Purchase");
-})
-
-var controller = function (param, val) {
-	// alert(document.getElementById('vidContainer')) // ??
+const controller = function (parameter, value) {
+	// Alert(document.getElementById('vidContainer')) // ??
 	// document.getElementById('vidContainer').opacity = .9
 
+	ipcRenderer.send(parameter, value);
 
-	ipcRenderer.send(param, val);
+	if (parameter == 'playpause') {
+		const ele = document.querySelector('#playpauser');
 
-	if (param == "playpause") {
-		var ele = document.getElementById("playpauser")
-
-		if (ele.src.includes('ic_play_arrow_black_24px')) {
-			ele.src = ele.src.replace(/ic_.+/i, 'ic_pause_black_24px.svg');
-		} else {
-			ele.src = ele.src.replace(/ic_.+/i, 'ic_play_arrow_black_24px.svg');
-		}
-
-
+		ele.src = ele.src.includes('ic_play_arrow_black_24px')
+			? ele.src.replace(/ic_.+/i, 'ic_pause_black_24px.svg')
+			: ele.src.replace(/ic_.+/i, 'ic_play_arrow_black_24px.svg');
 	}
+};
 
+const webFrame = require('electron').webFrame;
 
-
-
-
-}
-
-
-var webFrame = require('electron').webFrame;
 webFrame.setVisualZoomLevelLimits(1, 1);
 webFrame.setLayoutZoomLevelLimits(0, 0);

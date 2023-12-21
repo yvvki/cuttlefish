@@ -1,0 +1,12 @@
+{
+	"editor.tabSize": 2,
+	
+	"xo.enable": true,
+	"xo.format.enable": true,
+	"[html]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[javascript]": {
+		"editor.defaultFormatter": "samverschueren.linter-xo"
+	}
+}

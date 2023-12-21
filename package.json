@@ -1,40 +1,44 @@
 {
-  "name": "cuttlefish",
-  "version": "2.0.0",
-  "description": "Play video transparently full screen while working in the background",
-  "homepage": "https://github.com/yvvki/cuttlefish#readme",
-  "bugs": {
-    "url": "https://github.com/yvvki/cuttlefish/issues"
-  },
-  "license": "GPL-3.0",
-  "author": {
-    "name": "Christopher Cinq-Mars Jarvis",
-    "email": "info@cinqmarsmedia.com"
-  },
-  "contributors": [
-    "Yuuki Rika <yvvki@duck.com>"
-  ],
-  "main": "main.js",
-  "packageManager": "yarn@4.0.2",
-  "scripts": {
-    "start": "electron-forge start",
-    "package": "electron-forge package",
-    "make": "electron-forge make"
-  },
-  "repository": "github:yvvki/cuttlefish",
-  "dependencies": {
-    "@electron/remote": "^2.0.0",
-    "electron-squirrel-startup": "^1.0.0",
-    "menubar": "^9.0.0"
-  },
-  "devDependencies": {
-    "@electron-forge/cli": "^7.2.0",
-    "@electron-forge/maker-deb": "^7.2.0",
-    "@electron-forge/maker-rpm": "^7.2.0",
-    "@electron-forge/maker-squirrel": "^7.2.0",
-    "@electron-forge/maker-zip": "^7.2.0",
-    "@electron-forge/plugin-auto-unpack-natives": "^7.2.0",
-    "electron": "^27.0.0",
-    "electron-store": "^8.0.0"
-  }
+	"name": "cuttlefish",
+	"version": "2.0.0",
+	"description": "Play video transparently full screen while working in the background",
+	"homepage": "https://github.com/yvvki/cuttlefish#readme",
+	"bugs": {
+		"url": "https://github.com/yvvki/cuttlefish/issues"
+	},
+	"license": "GPL-3.0",
+	"author": {
+		"name": "Christopher Cinq-Mars Jarvis",
+		"email": "info@cinqmarsmedia.com"
+	},
+	"contributors": [
+		"Yuuki Rika <yvvki@duck.com>"
+	],
+	"main": "main.js",
+	"packageManager": "yarn@4.0.2",
+	"scripts": {
+		"start": "electron-forge start",
+		"package": "electron-forge package",
+		"make": "electron-forge make"
+	},
+	"repository": "github:yvvki/cuttlefish",
+	"dependencies": {
+		"@electron/remote": "^2.0.0",
+		"electron-squirrel-startup": "^1.0.0",
+		"menubar": "^9.0.0"
+	},
+	"devDependencies": {
+		"@electron-forge/cli": "^7.2.0",
+		"@electron-forge/maker-deb": "^7.2.0",
+		"@electron-forge/maker-rpm": "^7.2.0",
+		"@electron-forge/maker-squirrel": "^7.2.0",
+		"@electron-forge/maker-zip": "^7.2.0",
+		"@electron-forge/plugin-auto-unpack-natives": "^7.2.0",
+		"electron": "^27.0.0",
+		"electron-store": "^8.0.0",
+		"eslint-config-prettier": "^9.0.0",
+		"eslint-plugin-prettier": "^5.0.0",
+		"prettier": "^3.0.0",
+		"xo": "^0.56.0"
+	}
 }
