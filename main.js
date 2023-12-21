@@ -12,7 +12,7 @@ import {
 } from 'electron';
 import remote from '@electron/remote/main/index.js';
 import Store from 'electron-store';
-import {menubar} from 'menubar';
+import {menubar as menubarFix} from 'menubar';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -169,7 +169,7 @@ const addClickableRegion = (options) => {
 	childWindow.setIgnoreMouseEvents(true);
 
 	function initMenubar() {
-		const menubar = menubar({
+		const menubar = menubarFix({
 			index: MENU,
 			browserWindow: {
 				height: 300,
