@@ -1,4 +1,23 @@
-import { shell as _shell, ipcMain as _ipcMain, globalShortcut as _globalShortcut, app as _app, BrowserWindow as _BrowserWindow, screen } from 'electron';
+import {
+	shell as _shell,
+	ipcMain as _ipcMain,
+	globalShortcut as _globalShortcut,
+	app as _app,
+	BrowserWindow as _BrowserWindow,
+	screen,
+	dialog,
+} from 'electron';
+import {join} from 'node:path';
+import url from 'node:url';
+import Store from 'electron-store';
+
+// Const ipcMain=electron.ipcMain // ?
+/*
+const Tray=electron.Tray
+const nativeImage=electron.nativeImage
+*/
+import {menubar as Menubar} from 'menubar';
+
 require('@electron/remote/main').initialize();
 // Console.log("ELECTRON VERSION = ", process.version);
 // const { inAppPurchase } = require('electron').remote
@@ -8,10 +27,6 @@ const shell = _shell;
 // var CryptoJS = require("crypto-js");
 const ipcMain = _ipcMain;
 const globalShortcut = _globalShortcut;
-import { dialog } from 'electron';
-import { join } from 'node:path';
-import url from 'node:url';
-import Store from 'electron-store';
 
 const storage = new Store();
 const defaults = {
@@ -62,23 +77,13 @@ switch (process.platform) {
 	}
 }
 
-app.commandLine.appendSwitch(
-	'ppapi-flash-path',
-	join(__dirname, pluginName),
-);
+app.commandLine.appendSwitch('ppapi-flash-path', join(__dirname, pluginName));
 
 // Optional: Specify flash version, for example, v17.0.0.169
 app.commandLine.appendSwitch('ppapi-flash-version', '29.0.0.117');
 
 // Module to create native browser window.
 const BrowserWindow = _BrowserWindow;
-
-// Const ipcMain=electron.ipcMain // ?
-/*
-const Tray=electron.Tray
-const nativeImage=electron.nativeImage
-*/
-import { menubar as Menubar } from 'menubar';
 
 const INDEX_HTML = join('file://', __dirname, 'index.html');
 const PROMPT_HTML = join('file://', __dirname, 'prompt.html');
