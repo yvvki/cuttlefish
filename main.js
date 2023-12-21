@@ -211,8 +211,6 @@ const addClickableRegion = (options) => {
 		});
 };
 
-let modeWin;
-
 function start() {
 	ipcMain.on('openStreamBrowser', (_, url) => {
 		global.playlist = url;
@@ -312,57 +310,6 @@ function start() {
 	remote.enable(modeWin.webContents);
 }
 
-function checkSN(email, sn) {
-	if (email == null || sn == null) {
-		return false;
-	}
-
-	if (email.length < 5 || sn.length !== 12) {
-		return false;
-	}
-
-	/*
-  For (i=0;i<email.length;i++){
-    hash=hash*email.charCodeAt(i);
-  }
-  */
-
-	email = email.replaceAll('.', '');
-	email = email.replaceAll('@', '');
-	email = email.replaceAll('_', '');
-	// Email=email.replace('','');
-
-	let hash;
-	hash = Number.parseInt(email, 36) ** 0.2;
-	hash = Math.floor(hash * 100_000_000) / 100_000_000;
-
-	let p = String(hash).replace('e', '7');
-	p = p.replaceAll('+', '5');
-	p = p.replaceAll('.', '2');
-	p = p.slice(0, 14);
-
-	let testhash;
-	testhash = Number.parseInt(p).toString(34);
-
-	testhash = testhash.replaceAll('0', 'J');
-	testhash = testhash.replaceAll('1', 'W');
-	testhash = testhash.toUpperCase();
-	testhash = testhash.replaceAll('0', 'V');
-	// Console.log('pretesthash',testhash);
-	testhash += '1YC0Q1PU8BXLWR47';
-	if (testhash.length > 12) {
-		testhash = testhash.slice(0, 12);
-	}
-	// Console.log('testhash',testhash);
-	// console.log('sn',sn);
-
-	if (testhash == sn) {
-		return true;
-	}
-
-	return false;
-}
-
 let promptWin;
 
 function promptDonate() {
@@ -426,36 +373,24 @@ function ready() {
 			.get('auth')
 			.then((data) => {
 				if (data.data) {
-					//  Prompt()
-					// console.log('BOOOM',data.data);
 					start();
 				} else {
-					// Start();
 					promptDonate();
 				}
-
-				// Storage.set('auth', temp);
 			})
-			.catch((error) => {
+			.catch((_) => {
 				storage
 					.get('data')
-					.then((data) => {
+					.then((_) => {
 						start();
 					})
-					.catch((error) => {
+					.catch((_) => {
 						promptDonate();
 					});
-
-				// PromptDonate();
-				// console.log('err', err)
 			});
 	} else {
 		start();
 	}
-}
-
-function postdialog(file) {
-	// Console.log('fires')
 }
 
 function getdimensions() {
