@@ -7,8 +7,8 @@ import {
 	screen,
 	dialog,
 } from 'electron';
-import {join} from 'node:path';
-import url from 'node:url';
+import {dirname, join} from 'node:path';
+import {fileURLToPath} from 'node:url';
 import Store from 'electron-store';
 // Const ipcMain=electron.ipcMain // ?
 /*
@@ -17,6 +17,9 @@ const nativeImage=electron.nativeImage
 */
 import {menubar as Menubar} from 'menubar';
 import remote from '@electron/remote/main/index.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 remote.initialize();
 // Console.log("ELECTRON VERSION = ", process.version);
