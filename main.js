@@ -100,22 +100,22 @@ const TRANSPARENT_HTML = join('file://', __dirname, 'transparent.html');
 const MENU = join('file://', __dirname, 'menu.html');
 const CHILD_PADDING = 0;
 
-ipcMain.on('quitprompt', function (event, arg) {
+ipcMain.on('quitprompt', () => {
 	app.quit();
 });
 
-ipcMain.on('manual', function (event, arg) {
+ipcMain.on('manual', () => {
 	shell.openExternal('http://www.cinqmarsmedia.com/chameleon/manual.html');
 });
-ipcMain.on('cmm', function (event, arg) {
+ipcMain.on('cmm', () => {
 	shell.openExternal('https://www.cinqmarsmedia.com/');
 });
-ipcMain.on('github', function (event, arg) {
+ipcMain.on('github', () => {
 	shell.openExternal(
 		'https://github.com/Cinq-Mars-Media/Chameleon-Video-Player',
 	);
 });
-ipcMain.on('donate', function (event, arg) {
+ipcMain.on('donate', () => {
 	shell.openExternal(
 		'https://www.paypal.com/us/fundraiser/112574644767835624/charity/1944132',
 	);
@@ -235,14 +235,14 @@ const addClickableRegion = (options) => {
 let modeWin;
 
 function start() {
-	ipcMain.on('openStreamBrowser', function (app, url) {
+	ipcMain.on('openStreamBrowser', (_, url) => {
 		global.playlist = url;
 		getdimensions();
 
 		modeWin.close();
 	});
 
-	ipcMain.on('openURL', function (event, arg) {
+	ipcMain.on('openURL', (_, arg) => {
 		let result = arg;
 
 		if (/[a-z]/i.test(result) && !result.includes('http')) {
@@ -262,11 +262,11 @@ function start() {
 		modeWin.close();
 	});
 
-	ipcMain.on('showMenu', function (event, arg) {
+	ipcMain.on('showMenu', () => {
 		menubar.showWindow();
 	});
 
-	ipcMain.on('startwfile', function (event, arg) {
+	ipcMain.on('startwfile', () => {
 		if (typeof parent !== 'undefined') {
 			parent.close();
 		}
@@ -300,7 +300,7 @@ function start() {
 		}
 	});
 
-	ipcMain.on('quitprompt', function (event, arg) {
+	ipcMain.on('quitprompt', () => {
 		app.quit();
 	});
 	// Console.log(trials)
@@ -324,7 +324,7 @@ function start() {
 	modeWin.loadURL(MODE_HTML);
 
 	modeWin.show();
-	modeWin.on('close', function (event) {
+	modeWin.on('close', () => {
 		if (global.playlist === undefined) {
 			app.quit();
 		}
@@ -385,18 +385,18 @@ function checkSN(email, sn) {
 let promptWin;
 
 function promptDonate() {
-	ipcMain.on('start', function (event, arg) {
+	ipcMain.on('start', () => {
 		start();
 		promptWin.close();
 		//
 	});
 
-	ipcMain.on('startNoPrompt', function (event, arg) {
+	ipcMain.on('startNoPrompt', () => {
 		storage
 			.set('auth', {
 				data: 'U2FsdGVV3JFudJsuhkjevNoHTzYUz9VwaAMWMvUPaIUsqcDmAKSNWR2eR643rYXSryqb',
 			})
-			.then(function () {
+			.then(() => {
 				start();
 				promptWin.close();
 			});
@@ -559,7 +559,7 @@ function createWindow(w, h, p) {
 	// Allows the window to show over a fullscreen window
 	parent.setVisibleOnAllWorkspaces(true);
 
-	ipcMain.on('autotoggle', function () {
+	ipcMain.on('autotoggle', () => {
 		console.log('autotoggle');
 		if (
 			global.menubar &&
@@ -571,7 +571,7 @@ function createWindow(w, h, p) {
 	});
 
 	// SetTimeout(()=>{}, 6000);
-	ipcMain.on('toggle', function () {
+	ipcMain.on('toggle', () => {
 		// Here???
 		toggleCounter++;
 
@@ -586,49 +586,49 @@ function createWindow(w, h, p) {
 		parent.webContents.send('toggleViz', toggleCounter % 2);
 	});
 
-	ipcMain.on('goBack', function (event, arg) {
+	ipcMain.on('goBack', () => {
 		/**/
 
 		parent.webContents.send('relaunch');
 	});
 
-	ipcMain.on('toggleMenu', function (event, arg) {
+	ipcMain.on('toggleMenu', () => {
 		// TOGGLE MENU
 	});
 
-	ipcMain.on('opac', function (event, arg) {
+	ipcMain.on('opac', (_, arg) => {
 		parent.webContents.send('opac', arg);
 	});
 
-	ipcMain.on('opacityplus', function (event, arg) {
+	ipcMain.on('opacityplus', () => {
 		parent.webContents.send('opacityplus');
 	});
 
-	ipcMain.on('opacityminus', function (event, arg) {
+	ipcMain.on('opacityminus', () => {
 		parent.webContents.send('opacityminus');
 	});
 
-	ipcMain.on('playpause', function (event, arg) {
+	ipcMain.on('playpause', () => {
 		parent.webContents.send('playpause');
 	});
 
-	ipcMain.on('timeplus', function (event, arg) {
+	ipcMain.on('timeplus', () => {
 		parent.webContents.send('timeplus');
 	});
 
-	ipcMain.on('timeminus', function (event, arg) {
+	ipcMain.on('timeminus', () => {
 		parent.webContents.send('timeminus');
 	});
 
-	ipcMain.on('timefastback', function (event, arg) {
+	ipcMain.on('timefastback', () => {
 		parent.webContents.send('timefastback');
 	});
 
-	ipcMain.on('timefastforward', function (event, arg) {
+	ipcMain.on('timefastforward', () => {
 		parent.webContents.send('timefastforward');
 	});
 
-	ipcMain.on('quit', function (event, arg) {
+	ipcMain.on('quit', () => {
 		app.quit();
 	});
 
@@ -669,7 +669,11 @@ function createWindow(w, h, p) {
 		});
 
 		globalShortcut.register('Shift+CommandOrControl+j', () => {
-			global.menubarShown ? menubar.hideWindow() : menubar.showWindow();
+			if (global.menubarShown) {
+				menubar.hideWindow();
+			} else {
+				menubar.showWindow();
+			}
 		});
 
 		/*
@@ -750,7 +754,7 @@ function createWindow(w, h, p) {
 	// parent.webContents.openDevTools()
 
 	// Emitted when the window is closed.
-	parent.on('closed', function () {
+	parent.on('closed', () => {
 		// Dereference the window object, usually you would store windows
 		// in an array if your app supports multi windows, this is the time
 		// when you should delete the corresponding element.
@@ -766,7 +770,7 @@ function createWindow(w, h, p) {
 app.on('ready', ready);
 
 // Quit when all windows are closed.
-app.on('window-all-closed', function () {
+app.on('window-all-closed', () => {
 	// On OS X it is common for applications and their menu bar
 	// to stay active until the user quits explicitly with Cmd + Q
 	if (process.platform !== 'darwin') {
@@ -774,7 +778,7 @@ app.on('window-all-closed', function () {
 	}
 });
 
-app.on('activate', function () {
+app.on('activate', () => {
 	// On OS X it's common to re-create a window in the app when the
 	// dock icon is clicked and there are no other windows open.
 	if (typeof parent !== 'undefined' && parent === null) {
