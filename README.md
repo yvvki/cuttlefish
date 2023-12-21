@@ -40,4 +40,4 @@ yarn start
 
 > Copyright (c) Cinq-Mars Media & Yuuki Rika
 
-Licensed under the GNU General Public License. See [LICENCE.md](LICENSE.md).
+Licensed under the GNU General Public License, Version 3. See [LICENCE.md](LICENSE.md).
