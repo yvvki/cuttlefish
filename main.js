@@ -1,18 +1,18 @@
-import {
-	shell,
-	ipcMain,
-	globalShortcut,
-	app,
-	BrowserWindow,
-	screen,
-	dialog,
-} from 'electron';
+import process from 'node:process';
 import {dirname, join} from 'node:path';
 import {fileURLToPath} from 'node:url';
-import process from 'node:process';
+import {
+	app,
+	BrowserWindow,
+	dialog,
+	globalShortcut,
+	ipcMain,
+	screen,
+	shell,
+} from 'electron';
+import remote from '@electron/remote/main/index.js';
 import Store from 'electron-store';
 import {menubar} from 'menubar';
-import remote from '@electron/remote/main/index.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
