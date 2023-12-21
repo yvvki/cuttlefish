@@ -10,15 +10,15 @@ import {
 import {join} from 'node:path';
 import url from 'node:url';
 import Store from 'electron-store';
-
 // Const ipcMain=electron.ipcMain // ?
 /*
 const Tray=electron.Tray
 const nativeImage=electron.nativeImage
 */
 import {menubar as Menubar} from 'menubar';
+import remote from '@electron/remote/main/index.js';
 
-require('@electron/remote/main').initialize();
+remote.initialize();
 // Console.log("ELECTRON VERSION = ", process.version);
 // const { inAppPurchase } = require('electron').remote
 
@@ -323,7 +323,7 @@ function start() {
 		}
 	});
 
-	require('@electron/remote/main').enable(modeWin.webContents);
+	remote.enable(modeWin.webContents);
 }
 
 function checkSN(email, sn) {
@@ -750,7 +750,7 @@ function createWindow(w, h, p) {
 		parent = null;
 	});
 
-	require('@electron/remote/main').enable(parent.webContents);
+	remote.enable(parent.webContents);
 }
 
 // This method will be called when Electron has finished
