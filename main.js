@@ -2,8 +2,8 @@ import {
 	shell,
 	ipcMain,
 	globalShortcut,
-	app as _app,
-	BrowserWindow as _BrowserWindow,
+	app,
+	BrowserWindow,
 	screen,
 	dialog,
 } from 'electron';
@@ -38,11 +38,6 @@ const prompt = false;
 
 global.steam = DRM && steam;
 
-// Console.log("CHROME VERSION:", process.versions['chrome'])
-// const remote = require('electron').remote
-
-// Module to control application life.
-const app = _app;
 app.commandLine.appendSwitch(
 	'widevine-cdm-path',
 	join(__dirname, 'widevinecdmadapter.plugin'),
@@ -76,9 +71,6 @@ app.commandLine.appendSwitch('ppapi-flash-path', join(__dirname, pluginName));
 
 // Optional: Specify flash version, for example, v17.0.0.169
 app.commandLine.appendSwitch('ppapi-flash-version', '29.0.0.117');
-
-// Module to create native browser window.
-const BrowserWindow = _BrowserWindow;
 
 const INDEX_HTML = join('file://', __dirname, 'index.html');
 const PROMPT_HTML = join('file://', __dirname, 'prompt.html');
