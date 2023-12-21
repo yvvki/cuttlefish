@@ -40,19 +40,5 @@
     "eslint-plugin-prettier": "^5.0.0",
     "prettier": "^3.0.0",
     "xo": "^0.56.0"
-  },
-  "prettier": {
-    "singleQuote": true
-  },
-  "xo": {
-    "extends": [
-      "prettier"
-    ],
-    "plugins": [
-      "prettier"
-    ],
-    "rules": {
-      "prettier/prettier": "error"
-    }
   }
 }
