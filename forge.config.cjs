@@ -1,4 +1,3 @@
-/* eslint-disable unicorn/prefer-module */
 /**
  * @type {import('@electron-forge/shared-types').ResolvedForgeConfig}
  */
