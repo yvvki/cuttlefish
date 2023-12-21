@@ -78,6 +78,10 @@ switch (process.platform) {
 		pluginName = 'libpepflashplayer.so';
 		break;
 	}
+
+	default: {
+		break;
+	}
 }
 
 app.commandLine.appendSwitch('ppapi-flash-path', join(__dirname, pluginName));
