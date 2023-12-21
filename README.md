@@ -13,7 +13,7 @@
 
 This is a fork of Chameleon called Cuttlefish!
 
-Chameleon is an electron desktop app made by our 501(c)3 non-profit <a href="https://www.cinqmarsmedia.com">Cinq-Mars Media</a>. It was originally devised as multitasking tool for online education but has since expanded to include local video files and entertainment streaming services. Please consider <a href="https://www.paypal.com/us/fundraiser/charity/1944132">donating</a> to our non-profit to support open source projects like this one!
+Chameleon is an electron desktop app made by our 501(c)3 non-profit [Cinq-Mars Media](https://www.cinqmarsmedia.com). It was originally devised as multitasking tool for online education but has since expanded to include local video files and entertainment streaming services. Please consider [donating](https://www.paypal.com/us/fundraiser/charity/1944132) to our non-profit to support open source projects like this one!
 
 ## Getting Started
 
