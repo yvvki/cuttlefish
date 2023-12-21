@@ -15,6 +15,7 @@
 		"Yuuki Rika <yvvki@duck.com>"
 	],
 	"main": "main.js",
+	"type": "module",
 	"packageManager": "yarn@4.0.2",
 	"scripts": {
 		"start": "electron-forge start",
