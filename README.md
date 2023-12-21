@@ -4,12 +4,12 @@
 
 # Cuttlefish
 
+> Play video transparently on fullscreen overlay while working in the background
+
 [![Build](https://github.com/yvvki/cuttlefish/actions/workflows/build.yml/badge.svg)](https://github.com/yvvki/cuttlefish/actions/workflows/build.yml)
 [![GitHub License](https://img.shields.io/github/license/yvvki/cuttlefish)](LICENSE.md)
 [![XO code style](https://shields.io/badge/code_style-5ed9c7?logo=xo&labelColor=gray)](https://github.com/xojs/xo)
 [![Electron](https://img.shields.io/badge/electron-9feaf9?logo=electron&labelColor=1b1c26)](https://www.electronjs.org/)
-
-## About
 
 This is a fork of Chameleon called Cuttlefish!
 
@@ -36,6 +36,6 @@ Followed by this command to run the program:
 yarn start
 ```
 
-The app should run, though the code lacks cohesive commenting. Comments will be updated shortly and the guide will be expanded upon soon. 
+## License
 
-Thank you for your patience and support. 
+This project is licensed 
