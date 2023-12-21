@@ -190,7 +190,6 @@ const addClickableRegion = (options) => {
 			},
 			tooltip: 'Chameleon Player Options',
 			preloadWindow: true,
-			preloadWindow: true,
 		});
 		global.menubar = menubar;
 		globalShortcut.register('Shift+CommandOrControl+t', () => {
@@ -534,7 +533,6 @@ function createWindow(w, h, p) {
 		resizable: false,
 		maximizable: false,
 		minimizable: false,
-		fullscreen: false,
 	});
 
 	parent.setSize(w, h);
