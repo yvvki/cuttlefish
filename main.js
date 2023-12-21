@@ -1,7 +1,7 @@
 import {
-	shell as _shell,
-	ipcMain as _ipcMain,
-	globalShortcut as _globalShortcut,
+	shell,
+	ipcMain,
+	globalShortcut,
 	app as _app,
 	BrowserWindow as _BrowserWindow,
 	screen,
@@ -10,11 +10,6 @@ import {
 import {dirname, join} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import Store from 'electron-store';
-// Const ipcMain=electron.ipcMain // ?
-/*
-const Tray=electron.Tray
-const nativeImage=electron.nativeImage
-*/
 import {menubar as Menubar} from 'menubar';
 import remote from '@electron/remote/main/index.js';
 
@@ -22,14 +17,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 remote.initialize();
-// Console.log("ELECTRON VERSION = ", process.version);
-// const { inAppPurchase } = require('electron').remote
-
-const shell = _shell;
-// Var robot = require("robotjs");
-// var CryptoJS = require("crypto-js");
-const ipcMain = _ipcMain;
-const globalShortcut = _globalShortcut;
 
 const storage = new Store();
 const defaults = {
