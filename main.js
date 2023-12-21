@@ -332,6 +332,7 @@ function checkSN(email, sn) {
 	email = email.replaceAll('_', '');
 	// Email=email.replace('','');
 
+	let hash;
 	hash = Number.parseInt(email, 36) ** 0.2;
 	hash = Math.floor(hash * 100_000_000) / 100_000_000;
 
@@ -340,6 +341,7 @@ function checkSN(email, sn) {
 	p = p.replaceAll('.', '2');
 	p = p.slice(0, 14);
 
+	let testhash;
 	testhash = Number.parseInt(p).toString(34);
 
 	testhash = testhash.replaceAll('0', 'J');
