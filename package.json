@@ -25,6 +25,7 @@
 	"repository": "github:yvvki/cuttlefish",
 	"dependencies": {
 		"@electron/remote": "^2.0.0",
+		"@fontsource/righteous": "^5.0.18",
 		"electron-squirrel-startup": "^1.0.0",
 		"menubar": "^9.0.0"
 	},
